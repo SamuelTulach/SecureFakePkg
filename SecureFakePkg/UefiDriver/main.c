@@ -7,10 +7,7 @@ static EFI_EVENT ExitEvent = NULL;
 static BOOLEAN Virtual = FALSE;
 static BOOLEAN Runtime = FALSE;
 
-// TODO: hook set var
-// TODO: intercept key reads and shit
-
-#define CHECK_NAME(x, y) StrnCmp(x, y, sizeof(y) / sizeof(CHAR16))
+#define CHECK_NAME(x, y) (StrnCmp(x, y, sizeof(y) / sizeof(CHAR16)) == 0)
 
 EFI_STATUS EFIAPI HookedGetVariable(CHAR16* variableName, EFI_GUID* vendorGuid, UINT32* attributes, UINTN* dataSize, void* data)
 {
@@ -20,6 +17,7 @@ EFI_STATUS EFIAPI HookedGetVariable(CHAR16* variableName, EFI_GUID* vendorGuid, 
             return EFI_BUFFER_TOO_SMALL;
 
         *(UINT8*)data = SECURE_BOOT_ENABLE;
+        return EFI_SUCCESS;
     }
 
     if (CHECK_NAME(variableName, EFI_CUSTOM_MODE_NAME))
@@ -28,6 +26,7 @@ EFI_STATUS EFIAPI HookedGetVariable(CHAR16* variableName, EFI_GUID* vendorGuid, 
             return EFI_BUFFER_TOO_SMALL;
 
         *(UINT8*)data = STANDARD_SECURE_BOOT_MODE;
+        return EFI_SUCCESS;
     }
 
     if (CHECK_NAME(variableName, EFI_VENDOR_KEYS_NV_VARIABLE_NAME))
@@ -36,6 +35,25 @@ EFI_STATUS EFIAPI HookedGetVariable(CHAR16* variableName, EFI_GUID* vendorGuid, 
             return EFI_BUFFER_TOO_SMALL;
 
         *(UINT8*)data = VENDOR_KEYS_VALID;
+        return EFI_SUCCESS;
+    }
+
+    if (CHECK_NAME(variableName, EFI_SECURE_BOOT_MODE_NAME))
+    {
+        if (*dataSize < sizeof(UINT8))
+            return EFI_BUFFER_TOO_SMALL;
+
+        *(UINT8*)data = SECURE_BOOT_ENABLE;
+        return EFI_SUCCESS;
+    }
+
+    if (CHECK_NAME(variableName, EFI_VENDOR_KEYS_VARIABLE_NAME))
+    {
+        if (*dataSize < sizeof(UINT8))
+            return EFI_BUFFER_TOO_SMALL;
+
+        *(UINT8*)data = VENDOR_KEYS_VALID;
+        return EFI_SUCCESS;
     }
 
     return oGetVariable(variableName, vendorGuid, attributes, dataSize, data);

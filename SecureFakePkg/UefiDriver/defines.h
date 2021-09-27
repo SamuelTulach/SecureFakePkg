@@ -48,3 +48,17 @@
 #define EFI_VENDOR_KEYS_NV_VARIABLE_NAME       L"VendorKeysNv"
 #define VENDOR_KEYS_VALID             1
 #define VENDOR_KEYS_MODIFIED          0
+
+///
+/// Whether the platform firmware is operating in Secure boot mode (1) or not (0).
+/// All other values are reserved. Should be treated as read-only.
+/// Its attribute is BS+RT.
+///
+#define EFI_SECURE_BOOT_MODE_NAME                   L"SecureBoot"
+
+///
+/// Whether the system is configured to use only vendor provided
+/// keys or not. Should be treated as read-only.
+/// Its attribute is BS+RT.
+///
+#define EFI_VENDOR_KEYS_VARIABLE_NAME               L"VendorKeys"

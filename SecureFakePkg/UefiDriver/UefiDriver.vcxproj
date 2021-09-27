@@ -20,6 +20,7 @@
     <Link>
       <AdditionalDependencies>UefiDriverEntryPoint.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem Condition="'$(Configuration)|$(Platform)'=='Release|x64'">EFI Runtime</SubSystem>
+      <GenerateDebugInformation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">DebugFull</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
