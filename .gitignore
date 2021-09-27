@@ -1,0 +1,13 @@
+*.sdf
+EDK-II/.vs/EDK-II/v14/.suo
+x64
+*.opensdf
+*.suo
+debugger/stderr.txt
+debugger/stdout.txt
+*.opendb
+openssl/include/internal/dso_conf.h
+/EDK-II/.vs
+/SecureFakePkg/.vs
+/EDK-II/EDK-II.VC.db
+/SecureFakePkg/SecureFakePkg.VC.db
