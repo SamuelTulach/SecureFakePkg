@@ -99,11 +99,11 @@ void* SetServicePointer(EFI_TABLE_HEADER* ServiceTableHeader, void** ServiceTabl
 EFI_STATUS PrepaireSystem()
 {
     EFI_STATUS status = gBS->CreateEventEx(EVT_NOTIFY_SIGNAL,
-                            TPL_NOTIFY,
-                            SetVirtualAddressMapEvent,
-                            NULL,
-                            &gEfiEventVirtualAddressChangeGuid,
-                            &NotifyEvent);
+        TPL_NOTIFY,
+        SetVirtualAddressMapEvent,
+        NULL,
+        &gEfiEventVirtualAddressChangeGuid,
+        &NotifyEvent);
     if (EFI_ERROR(status))
     {
         Print(L"Can't create event (SetVirtualAddressMapEvent): %d\n", status);
