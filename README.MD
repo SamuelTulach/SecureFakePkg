@@ -35,4 +35,5 @@ load SecureFakePkg.efi
 ## Compiling
 See [VisualEfi](https://github.com/ionescu007/VisualUefi).
 
-
+## Download
+See [UnknownCheats post for compiled version](https://www.unknowncheats.me/forum/anti-cheat-bypass/471614-securefakepkg-trick-windows-thinking-secure-boot.html).
