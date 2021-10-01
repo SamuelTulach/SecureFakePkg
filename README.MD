@@ -1,5 +1,5 @@
 # SecureFakePkg
-SecureFakePkg is a simple EFI runtime driver that hooks GetVariable function and returns data expected by Windows to make it think that it's running with secure boot enabled.
+SecureFakePkg is a simple EFI runtime driver that hooks GetVariable function and returns data expected by Windows to make it think that it's running with secure boot enabled. In other words, it fakes secure boot status.
 
 **Please note:** Before loading the driver, check that you have vendor (Microsoft) keys enrolled. If not, try enabling secure boot and then disabling it. You can check that they are enrolled with *dmpstore -b* command in EFI shell. You should see [something like this](assets/keys.png).
 
